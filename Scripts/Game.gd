@@ -12,6 +12,7 @@ export var player_scene:PackedScene
 onready var _game_state := $GameStateMachine
 
 
+
 func _ready():
 
 	Globals.setup(
@@ -21,7 +22,7 @@ func _ready():
 	)
 	
 	_game_state.setup(
-		GameState.MAIN_MENU,
+		GameState.GAME,
 		funcref(self, "_on_GameStateMachine_enter_state"),
 		FuncRef.new(),
 		FuncRef.new()
@@ -34,7 +35,7 @@ func _on_GameStateMachine_enter_state():
 			pass
 
 		GameState.GAME:
-			pass
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 		_:
 			assert(false, "Unknown game state")

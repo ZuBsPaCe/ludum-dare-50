@@ -8,6 +8,12 @@ var player: RigidBody2D
 
 var _center_node: Node2D;
 
+
+
+var action1_active := false
+var action2_active := false
+
+
 func _ready():
 	_center_node = Node2D.new()
 	add_child(_center_node)

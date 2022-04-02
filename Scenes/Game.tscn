@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Prototype/Ground Draft.tscn" type="PackedScene" id=2]
@@ -6,16 +6,9 @@
 [ext_resource path="res://Scripts/Tools/StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Prototype/FlowerBed.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/Lady/Lady Draft 01.glb" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Garden/Ground.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Stream/Stream.tscn" type="PackedScene" id=9]
-
-[sub_resource type="SphereShape" id=1]
-radius = 3.0
-
-[sub_resource type="SphereMesh" id=2]
-radius = 3.0
-height = 6.0
 
 [sub_resource type="ProceduralSky" id=3]
 sky_top_color = Color( 0.14902, 0.509804, 0.682353, 1 )
@@ -89,19 +82,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5682, -61.9337 )
 [node name="House Draft 01" parent="Prototype" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9308, 10.0166, -64.2008 )
 
-[node name="Player" type="KinematicBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.9158, 0 )
-script = ExtResource( 7 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Player"]
-shape = SubResource( 1 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Player"]
-mesh = SubResource( 2 )
-
-[node name="Camera" type="Camera" parent="Player"]
-current = true
-far = 1000.0
+[node name="Player" parent="." instance=ExtResource( 7 )]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
