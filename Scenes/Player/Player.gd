@@ -153,40 +153,51 @@ func _physics_process(delta):
 	
 		
 	if !moving && !action1 && !action2:
+		
+		var wait_for_animations := false
 		if _reset_idle:
-			_idle_cooldown_body.restart_with(2.0 + randf() * 5)
-			_idle_cooldown_head.restart_with(2.0 + randf() * 5)
-			_idle_cooldown_tail.restart_with(2.0 + randf() * 5)
-			
-			_ducky_animation_walk.play("RestPose")
-#
-		if !_ducky_animation_walk.is_playing():
-			_ducky_animation_walk.playback_speed = 1.0
+			if (_ducky_animation_walk.is_playing() ||
+				_ducky_animation_head.is_playing() ||
+				_ducky_animation_tail.is_playing() ||
+				_ducky_animation_wings.is_playing()):
+				wait_for_animations = true
 
-			if !_idle_cooldown_body.done:
-				_ducky_animation_walk.play("IdleBody1")
-			else:
-				_idle_cooldown_body.restart_with(randf() * 5)
-				_ducky_animation_walk.play("IdleBody2")
 				
-		
-		if !_ducky_animation_head.is_playing():
-			if _idle_cooldown_head.done:
+		if !wait_for_animations:
+			if _reset_idle:
+				_idle_cooldown_body.restart_with(2.0 + randf() * 5)
 				_idle_cooldown_head.restart_with(2.0 + randf() * 5)
-				
-				if randf() < 0.5:
-					_ducky_animation_head.play("IdleHead1")
-				else:
-					_ducky_animation_head.play("IdleHead2")
-		
-		if !_ducky_animation_tail.is_playing():
-			if _idle_cooldown_tail.done:
 				_idle_cooldown_tail.restart_with(2.0 + randf() * 5)
+				
+				_ducky_animation_walk.play("RestPose")
+	#
+			if !_ducky_animation_walk.is_playing():
+				_ducky_animation_walk.playback_speed = 1.0
 
-				_ducky_animation_tail.play("IdleTail")
+				if !_idle_cooldown_body.done:
+					_ducky_animation_walk.play("IdleBody1")
+				else:
+					_idle_cooldown_body.restart_with(randf() * 5)
+					_ducky_animation_walk.play("IdleBody2")
+					
+			
+			if !_ducky_animation_head.is_playing():
+				if _idle_cooldown_head.done:
+					_idle_cooldown_head.restart_with(2.0 + randf() * 5)
+					
+					if randf() < 0.5:
+						_ducky_animation_head.play("IdleHead1")
+					else:
+						_ducky_animation_head.play("IdleHead2")
+			
+			if !_ducky_animation_tail.is_playing():
+				if _idle_cooldown_tail.done:
+					_idle_cooldown_tail.restart_with(2.0 + randf() * 5)
 
-		
-		_reset_idle = false
+					_ducky_animation_tail.play("IdleTail")
+
+			
+			_reset_idle = false
 	
 	
 
