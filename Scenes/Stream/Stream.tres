@@ -1,0 +1,40 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Stream/Stream.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Stream/StreamDisplace.png" type="Texture" id=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+
+uniform sampler2D stream;
+uniform sampler2D displace;
+
+
+void vertex() {
+	vec2 uv = UV;
+	
+	uv.y *= 3.0;
+	uv.y -= TIME * 0.02;
+	
+	vec3 shift3 = texture(displace, uv).rgb;
+	
+	float shift = (shift3.r + shift3.g + shift3.b) * 0.333;
+	
+	VERTEX.y += (shift - 0.5) * 30.0;
+}
+
+
+void fragment() {
+	vec2 uv = UV;
+	uv.y *= 2.0;
+	
+	uv.y -= TIME * 0.1;
+	vec4 col = texture(stream, uv);
+	ALBEDO = col.rgb;
+	ALPHA = 0.75;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/stream = ExtResource( 1 )
+shader_param/displace = ExtResource( 2 )

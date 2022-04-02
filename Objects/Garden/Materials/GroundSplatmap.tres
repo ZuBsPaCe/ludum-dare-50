@@ -1,0 +1,36 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+
+[ext_resource path="res://Objects/Garden/Textures/Tiled Wet Gravel.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Garden/Textures/Tiled Grass.png" type="Texture" id=2]
+[ext_resource path="res://Objects/Garden/Textures/Tiled Gravel.png" type="Texture" id=3]
+[ext_resource path="res://Objects/Garden/Textures/Ground Splatmap.png" type="Texture" id=4]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+
+uniform sampler2D splatmap;
+uniform sampler2D grass_tex;
+uniform sampler2D gravel_tex;
+uniform sampler2D wet_tex;
+
+
+void fragment()
+{
+	vec3 splat3 = texture(splatmap, UV).rgb;
+	
+	vec3 grass = texture(grass_tex, UV).rgb;
+	vec3 gravel = texture(gravel_tex, UV).rgb;
+	vec3 wet = texture(wet_tex, UV).rgb;
+	
+	vec3 col = mix(grass, gravel, splat3.r);
+	col = mix(col, wet, splat3.b);
+	
+	ALBEDO = col;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/splatmap = ExtResource( 4 )
+shader_param/grass_tex = ExtResource( 2 )
+shader_param/gravel_tex = ExtResource( 3 )
+shader_param/wet_tex = ExtResource( 1 )
