@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Objects/House/House Draft 01.glb" type="PackedScene" id=1]
+
+[node name="House Draft 01" instance=ExtResource( 1 )]
