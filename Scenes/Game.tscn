@@ -5,7 +5,7 @@
 [ext_resource path="res://Objects/House/House Draft 01.glb" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Tools/StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Prototype/FlowerBed.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Objects/Lady/Lady Draft 01.glb" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Lady/Lady.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Garden/Ground.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Stream/Stream.tscn" type="PackedScene" id=9]
@@ -76,9 +76,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 149.459, -1.64639, 70.9751 )
 [node name="FlowerBed6" parent="Prototype" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 149.459, -1.64639, 142.826 )
 
-[node name="Lady Draft 01" parent="Prototype" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.5682, -61.9337 )
-
 [node name="House Draft 01" parent="Prototype" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9308, 10.0166, -64.2008 )
 
@@ -93,3 +90,6 @@ shadow_enabled = true
 shadow_bias = 2.0
 directional_shadow_normal_bias = 0.5
 directional_shadow_max_distance = 800.0
+
+[node name="Lady" parent="." instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 96.5973, 0, 0 )
