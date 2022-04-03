@@ -1,6 +1,6 @@
 extends KinematicBody
 
-onready var _camera := $Camera
+onready var _camera := $SpringArm/Camera
 onready var _spring_arm := $SpringArm
 onready var _ducky := $Ducky
 onready var _ducky_animation_walk := $Ducky/AnimationPlayer
@@ -36,7 +36,12 @@ func _ready():
 	_ducky.add_child(_ducky_animation_head)
 	_ducky.add_child(_ducky_animation_tail)
 	_ducky.add_child(_ducky_animation_wings)
-	
+
+
+func init_rotation(rotation_degrees: float):
+	_ducky.rotation_degrees.y = rotation_degrees
+	_ducky_rotation_degrees = rotation_degrees
+
 
 
 func _process(delta):

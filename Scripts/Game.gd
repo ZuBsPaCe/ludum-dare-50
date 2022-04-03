@@ -10,11 +10,7 @@ onready var _game_state := $GameStateMachine
 
 func _ready():
 
-	Globals.setup(
-		$Camera2D,
-		$EntityContainer,
-		player_scene
-	)
+	Globals.setup()
 	
 	_game_state.setup(
 		GameState.MAIN_MENU,
@@ -23,8 +19,10 @@ func _ready():
 		funcref(self, "_on_GameStateMachine_leave_state")
 	)
 	
-	$MainMenuOverlay/MainMenu.visible = false
-	$StoryOverlay/Story.visible = false
+	$MainMenuOverlay.visible = false
+	$StoryOverlay.visible = false
+	
+	$"MainMenu Camera".current = true
 
 
 func _unhandled_input(event):
@@ -46,7 +44,7 @@ func _on_GameStateMachine_enter_state():
 	match _game_state.current:
 		GameState.MAIN_MENU:
 			get_tree().paused = true
-			$MainMenuOverlay/MainMenu.visible = true
+			$MainMenuOverlay.visible = true
 			$MainMenuOverlay.update_controls()
 
 		GameState.NEW_GAME:
@@ -57,7 +55,7 @@ func _on_GameStateMachine_enter_state():
 			$MainAnimationPlayer.play("Task1-Start")
 
 		GameState.STORY:
-			$StoryOverlay/Story.visible = true
+			$StoryOverlay.visible = true
 			$StoryOverlay.update_controls()
 
 		GameState.GAME:
@@ -66,7 +64,7 @@ func _on_GameStateMachine_enter_state():
 		
 		GameState.PAUSED:
 			get_tree().paused = true
-			$MainMenuOverlay/MainMenu.visible = true
+			$MainMenuOverlay.visible = true
 			$MainMenuOverlay.update_controls()
 		
 		GameState.CONTINUE:
@@ -79,10 +77,10 @@ func _on_GameStateMachine_enter_state():
 func _on_GameStateMachine_leave_state():
 	match _game_state.current:
 		GameState.MAIN_MENU:
-			$MainMenuOverlay/MainMenu.visible = false
+			$MainMenuOverlay.visible = false
 		
 		GameState.STORY:
-			$StoryOverlay/Story.visible = false
+			$StoryOverlay.visible = false
 
 		GameState.NEW_GAME:
 			pass
@@ -91,11 +89,11 @@ func _on_GameStateMachine_leave_state():
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 		GameState.PAUSED:
-			$MainMenuOverlay/MainMenu.visible = false
+			$MainMenuOverlay.visible = false
 			pass
 		
 		GameState.CONTINUE:
-			$MainMenuOverlay/MainMenu.visible = false
+			$MainMenuOverlay.visible = false
 			pass
 
 		_:
