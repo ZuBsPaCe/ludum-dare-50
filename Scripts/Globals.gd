@@ -8,6 +8,13 @@ var _center_node: Node2D;
 var action1_active := false
 var action2_active := false
 
+#960 + 192 = 1152. Max range 64. => 1088 -> 1216
+var aim_anchor := Vector2(1920, 1080) * 0.5 - Vector2(64, 64) + Vector2(192, 0.0)
+var aim_offset := Vector2.ZERO
+var aim_shown := false
+
+var has_medicine := false
+
 
 func _ready():
 	_center_node = Node2D.new()
@@ -16,7 +23,7 @@ func _ready():
 
 
 func reset_game():
-	pass
+	has_medicine = false
 
 
 func setup():

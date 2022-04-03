@@ -19,5 +19,6 @@ func _on_StartStoryButton_mouse_exited():
 
 func _on_StartStoryButton_gui_input(event):
 	if event is InputEventMouseButton && event.pressed:
+		owner.play_sound("AudioBling")
 		owner.switch_game_state(GameState.GAME)
 

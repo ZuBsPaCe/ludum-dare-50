@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WakeUp.ogg-f6494fcdeb4c169f05649ce05dbc7b4d.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Music/WakeUp.ogg"
+dest_files=[ "res://.import/WakeUp.ogg-f6494fcdeb4c169f05649ce05dbc7b4d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

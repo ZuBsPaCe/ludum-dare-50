@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Task1-Help me.ogg-241de43bc326b5a2e902ac66f2ad6e67.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Lady/Task1-Help me.ogg"
+dest_files=[ "res://.import/Task1-Help me.ogg-241de43bc326b5a2e902ac66f2ad6e67.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

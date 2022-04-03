@@ -24,6 +24,11 @@ func _input(event):
 		
 		look_rotation_degrees.x = clamp(look_rotation_degrees.x, 315, 380)
 		look_rotation_degrees.y = wrapf(look_rotation_degrees.y, -180, 180)
+		
+		if Globals.aim_shown:
+			Globals.aim_offset += event.relative * 0.5
+			Globals.aim_offset.x = clamp(Globals.aim_offset.x, -64, 64)
+			Globals.aim_offset.y = clamp(Globals.aim_offset.y, -64, 64)
 
 
 func _process(delta):

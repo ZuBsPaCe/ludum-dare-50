@@ -29,6 +29,7 @@ func _on_NewGameButton_mouse_exited():
 
 func _on_NewGameButton_gui_input(event):
 	if event is InputEventMouseButton && event.pressed:
+		owner.play_sound("AudioBling")
 		owner.switch_game_state(GameState.NEW_GAME)
 
 
@@ -55,4 +56,5 @@ func _on_ContinueButton_mouse_exited():
 
 func _on_ContinueButton_gui_input(event):
 	if event is InputEventMouseButton && event.pressed:
+		owner.play_sound("AudioBling")
 		owner.switch_game_state(GameState.CONTINUE)

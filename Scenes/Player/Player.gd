@@ -4,6 +4,11 @@ onready var _camera := $SpringArm/Camera
 onready var _spring_arm := $SpringArm
 onready var _ducky := $Ducky
 onready var _ducky_animation_walk := $Ducky/AnimationPlayer
+
+
+export var movement_enabled := true
+
+
 var _ducky_animation_head : AnimationPlayer
 var _ducky_animation_tail : AnimationPlayer
 var _ducky_animation_wings : AnimationPlayer
@@ -18,6 +23,8 @@ var _idle_cooldown_body := Cooldown.new()
 var _idle_cooldown_head := Cooldown.new()
 var _idle_cooldown_tail := Cooldown.new()
 var _idle_cooldown_flatter := Cooldown.new()
+
+
 
 
 func _ready():
@@ -43,17 +50,28 @@ func init_rotation(rotation_degrees: float):
 	_ducky_rotation_degrees = rotation_degrees
 
 
+func init_position_and_rotation(pos: Vector3, rotation_degrees: float):
+	translation = pos
+	_ducky.rotation_degrees.y = rotation_degrees
+	_ducky_rotation_degrees = rotation_degrees
+
+
+func reset_game():
+	$Ducky/Armature/Skeleton/DuckyBeakBottom/Medicine.visible = false
+
 
 func _process(delta):
 	$SpringArm.translation = translation
 	$SpringArm.translation.y += _spring_arm_offset
+	
 
 
 func _physics_process(delta):
 	var axis := Vector3.ZERO
 
-	axis.z = Input.get_axis("up", "down")
-	axis.x = Input.get_axis("left", "right")
+	if movement_enabled:
+		axis.z = Input.get_axis("up", "down")
+		axis.x = Input.get_axis("left", "right")
 
 #	var forward: Vector3 = _camera.transform.basis.z
 #	var right: Vector3 = _camera.transform.basis.x
@@ -129,20 +147,51 @@ func _physics_process(delta):
 		_reset_idle = true
 		
 	if action1:
-		if !Globals.action1_active:
+		if !Globals.action1_active && movement_enabled:
 			Globals.action1_active = true
+			Globals.aim_shown = true
+			owner.show_aim()
 			_reset_idle = true
 			_ducky_animation_head.play("BiteStart")
 			_ducky_animation_head.queue("BeakOpen")
 	else:
 		if Globals.action1_active:
 			Globals.action1_active = false
+			owner.hide_aim()
+			Globals.aim_shown = false
 			_ducky_animation_head.play("BiteEnd")
 			_ducky_animation_head.queue("BeakClosed")
-	
+			
+			var screen_pos := Globals.aim_offset + Globals.aim_anchor + Vector2(64, 64)
+
+			var from = $SpringArm/Camera.project_ray_origin(screen_pos)
+			var to = from + $SpringArm/Camera.project_ray_normal(screen_pos) * 1000.0
+
+			
+			
+			var space_rid = get_world().space
+			var space_state = PhysicsServer.space_get_direct_state(space_rid)
+
+
+			var res = space_state.intersect_ray(
+				from,
+				to, 
+				[],
+				0x7FFFFFFF,
+				true,
+				false)
+
+			if res.size() > 0:
+				var collider = res["collider"]
+				if collider.is_in_group("Medicine"):
+					collider.visible = false
+					$Ducky/Armature/Skeleton/DuckyBeakBottom/Medicine.visible = true
+					Globals.has_medicine = true
+
+
 	
 	if action2:
-		if !Globals.action2_active:
+		if !Globals.action2_active && movement_enabled:
 			Globals.action2_active = true
 			_reset_idle = true
 			_ducky_animation_wings.play("WingsUp")

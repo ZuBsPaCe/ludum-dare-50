@@ -1,6 +1,7 @@
 extends Spatial
 
-var GameState := preload("res://Scripts/GameState.gd").GameState
+const GameState := preload("res://Scripts/GameState.gd").GameState
+const Task := preload("res://Scripts/Task.gd").Task
 
 export var player_scene:PackedScene
 
@@ -21,6 +22,7 @@ func _ready():
 	
 	$MainMenuOverlay.visible = false
 	$StoryOverlay.visible = false
+	$AimOverlay.visible = false
 	
 	$"MainMenu Camera".current = true
 
@@ -32,12 +34,28 @@ func _unhandled_input(event):
 				switch_game_state(GameState.PAUSED)
 		
 		
+		
+func _process(delta):
+	if Globals.aim_shown:
+		$AimOverlay/Aim.rect_position = Globals.aim_anchor + Globals.aim_offset
+		
 
 func switch_game_state(new_game_state):
 	_game_state.set_state(new_game_state)
 
 func get_game_state():
 	return _game_state.current
+
+
+func show_aim():
+	$AimOverlay.visible = true
+	
+func hide_aim():
+	$AimOverlay.visible = false
+
+
+func play_sound(name):
+	get_node("Sounds/" + name).play()
 
 
 func _on_GameStateMachine_enter_state():
@@ -49,6 +67,7 @@ func _on_GameStateMachine_enter_state():
 
 		GameState.NEW_GAME:
 			Globals.reset_game()
+			$Player.reset_game()
 			switch_game_state(GameState.STORY)
 			
 			$MainAnimationPlayer.stop()
@@ -59,6 +78,7 @@ func _on_GameStateMachine_enter_state():
 			$StoryOverlay.update_controls()
 
 		GameState.GAME:
+			$DoorMain.rotation.y = 0
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			get_tree().paused = false
 		
@@ -98,3 +118,16 @@ func _on_GameStateMachine_leave_state():
 
 		_:
 			assert(false, "Unknown game state")
+			
+
+func begin_task(task: int):
+	$Lady.begin_task(task)
+
+
+func _on_Lady_body_entered(body):
+	if body.is_in_group("Player"):
+		if Globals.has_medicine:
+			Globals.has_medicine = false
+			$Player/Ducky/Armature/Skeleton/DuckyBeakBottom/Medicine.visible = false
+			$MainAnimationPlayer.play("Task2-Start")
+
