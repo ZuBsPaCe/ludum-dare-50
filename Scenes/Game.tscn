@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Prototype/Ground Draft.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/House/House Draft 01.glb" type="PackedScene" id=3]
+[ext_resource path="res://Objects/House/House.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Tools/StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Prototype/FlowerBed.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Lady/Lady.tscn" type="PackedScene" id=6]
@@ -53,6 +53,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.497795, -1.72888, 1.42932 )
 [node name="Stream" parent="Garden" instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -70.8475, 0 )
 
+[node name="House" parent="Garden" instance=ExtResource( 3 )]
+
 [node name="Prototype" type="Spatial" parent="."]
 
 [node name="Ground Draft" parent="Prototype" instance=ExtResource( 2 )]
@@ -75,9 +77,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 149.459, -1.64639, 70.9751 )
 
 [node name="FlowerBed6" parent="Prototype" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 149.459, -1.64639, 142.826 )
-
-[node name="House Draft 01" parent="Prototype" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42.9308, 10.0166, -64.2008 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 
