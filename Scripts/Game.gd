@@ -52,6 +52,9 @@ func _on_GameStateMachine_enter_state():
 		GameState.NEW_GAME:
 			Globals.reset_game()
 			switch_game_state(GameState.STORY)
+			
+			$MainAnimationPlayer.stop()
+			$MainAnimationPlayer.play("Task1-Start")
 
 		GameState.STORY:
 			$StoryOverlay/Story.visible = true

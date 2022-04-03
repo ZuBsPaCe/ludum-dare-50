@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Objects/House/Textures/Darkwood.tres" type="Material" id=2]
@@ -26,6 +26,9 @@
 [ext_resource path="res://Objects/Menu/Textures/Glow/Story1.png" type="Texture" id=24]
 [ext_resource path="res://Objects/Menu/Textures/Glow/Story2.png" type="Texture" id=25]
 [ext_resource path="res://Objects/Menu/Textures/Glow/Story3.png" type="Texture" id=26]
+[ext_resource path="res://Scenes/Ducky/Ducky.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=28]
+[ext_resource path="res://Objects/Ducky/Textures/EyeLids.png" type="Texture" id=29]
 
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 543.793, 100, 10 )
@@ -62,6 +65,180 @@ glow_intensity = 1.5
 glow_strength = 1.3
 glow_hdr_threshold = 0.9
 
+[sub_resource type="Animation" id=9]
+resource_name = "Task1-Start"
+tracks/0/type = "animation"
+tracks/0/path = NodePath("Lady/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": PoolStringArray( "LadyWork1" ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Lady:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 154.472, 6.42732, -142.319 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Lady:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 89.555, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Ducky:translation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 175.589, 6.25989, -91.1551 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Ducky:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -162.282, 0 ) ]
+}
+tracks/5/type = "animation"
+tracks/5/path = NodePath("EyelidAnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": PoolStringArray( "Open" ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Open"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("EyelidAnimationPlayer/EyelidOverlay/LightRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.98, 0.98, 0.98, 1 ), Color( 0.980392, 0.980392, 0.980392, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EyelidAnimationPlayer/EyelidOverlay/UpperLid:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 1.2, 1.4, 2, 3, 3.3, 3.5, 4.1, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -774 ), Vector2( 0, -849 ), Vector2( 0, -774 ), Vector2( 0, 0 ), Vector2( 0, -999 ), Vector2( 0, -1143 ), Vector2( 0, -999 ), Vector2( 0, 0 ), Vector2( 0, -1810 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EyelidAnimationPlayer/EyelidOverlay/LowerLid:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1, 1.2, 1.4, 2, 3, 3.3, 3.5, 4.1, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1080 ), Vector2( 0, 1966 ), Vector2( 0, 2099 ), Vector2( 0, 1966 ), Vector2( 0, 1080 ), Vector2( 0, 2100 ), Vector2( 0, 2217 ), Vector2( 0, 2100 ), Vector2( 0, 1080 ), Vector2( 0, 2810 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("EyelidAnimationPlayer/EyelidOverlay:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("EyelidAnimationPlayer/EyelidOverlay/UpperLid:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -715 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("EyelidAnimationPlayer/EyelidOverlay/LowerLid:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1966 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("EyelidAnimationPlayer/EyelidOverlay/LightRect:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.980392, 0.980392, 0.980392, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("EyelidAnimationPlayer/EyelidOverlay:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
 [node name="Game" type="Spatial"]
 script = ExtResource( 1 )
 
@@ -76,6 +253,7 @@ far = 1500.0
 
 [node name="MainMenuOverlay" type="CanvasLayer" parent="."]
 pause_mode = 2
+visible = false
 script = ExtResource( 7 )
 
 [node name="MainMenu" type="MarginContainer" parent="MainMenuOverlay"]
@@ -195,6 +373,7 @@ size_flags_vertical = 4
 
 [node name="StoryOverlay" type="CanvasLayer" parent="."]
 pause_mode = 2
+visible = false
 script = ExtResource( 22 )
 
 [node name="Story" type="MarginContainer" parent="StoryOverlay"]
@@ -424,9 +603,6 @@ shadow_bias = 2.0
 directional_shadow_normal_bias = 0.5
 directional_shadow_max_distance = 800.0
 
-[node name="Lady" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 96.5973, 0, 22.0946 )
-
 [node name="Fauna" type="Spatial" parent="."]
 
 [node name="Tree1" parent="Fauna" instance=ExtResource( 13 )]
@@ -471,6 +647,45 @@ transform = Transform( 0.605113, 0, 0.796139, 0, 1, 0, -0.796139, 0, 0.605113, 3
 [node name="Bush Variation10" parent="Fauna" instance=ExtResource( 12 )]
 transform = Transform( 0.805626, -0.238326, -0.542372, -0.36175, -0.922912, -0.131794, -0.469151, 0.30238, -0.829737, 345.661, 4.73455, -302.421 )
 
+[node name="Lady" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.0077666, 0, 0.99997, 0, 1, 0, -0.99997, 0, 0.0077666, 154.472, 6.42732, -142.319 )
+
+[node name="Ducky" parent="." instance=ExtResource( 27 )]
+transform = Transform( -0.952566, 0, -0.304332, 0, 1, 0, 0.304332, 0, -0.952566, 175.589, 6.25989, -91.1551 )
+script = ExtResource( 28 )
+
+[node name="MainAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Task1-Start = SubResource( 9 )
+
+[node name="EyelidAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Open = SubResource( 10 )
+anims/RESET = SubResource( 11 )
+
+[node name="EyelidOverlay" type="CanvasLayer" parent="EyelidAnimationPlayer"]
+layer = 2
+visible = false
+
+[node name="LightRect" type="ColorRect" parent="EyelidAnimationPlayer/EyelidOverlay"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.980392, 0.980392, 0.980392, 0 )
+
+[node name="UpperLid" type="TextureRect" parent="EyelidAnimationPlayer/EyelidOverlay"]
+margin_top = -715.0
+margin_right = 1920.0
+margin_bottom = 365.0
+rect_scale = Vector2( 1, 1.5 )
+texture = ExtResource( 29 )
+stretch_mode = 1
+
+[node name="LowerLid" type="TextureRect" parent="EyelidAnimationPlayer/EyelidOverlay"]
+margin_top = 1966.0
+margin_right = 1920.0
+margin_bottom = 3046.01
+rect_scale = Vector2( 1, -1.5 )
+texture = ExtResource( 29 )
+stretch_mode = 1
+
 [connection signal="gui_input" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer2/ExitButton" to="MainMenuOverlay" method="_on_ExitButton_gui_input"]
 [connection signal="mouse_entered" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer2/ExitButton" to="MainMenuOverlay" method="_on_ExitButton_mouse_entered"]
 [connection signal="mouse_exited" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer2/ExitButton" to="MainMenuOverlay" method="_on_ExitButton_mouse_exited"]
@@ -483,3 +698,6 @@ transform = Transform( 0.805626, -0.238326, -0.542372, -0.36175, -0.922912, -0.1
 [connection signal="gui_input" from="StoryOverlay/Story/VBoxContainer/StartStoryButton" to="StoryOverlay" method="_on_StartStoryButton_gui_input"]
 [connection signal="mouse_entered" from="StoryOverlay/Story/VBoxContainer/StartStoryButton" to="StoryOverlay" method="_on_StartStoryButton_mouse_entered"]
 [connection signal="mouse_exited" from="StoryOverlay/Story/VBoxContainer/StartStoryButton" to="StoryOverlay" method="_on_StartStoryButton_mouse_exited"]
+
+[editable path="Lady"]
+[editable path="Ducky"]
