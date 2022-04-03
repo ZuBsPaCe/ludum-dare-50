@@ -65,21 +65,6 @@ func _physics_process(delta):
 	var action1 := Input.is_action_pressed("left_click")
 	var action2 := Input.is_action_pressed("right_click")
 	
-	
-
-	var forward: Vector3 = _ducky.transform.basis.z
-	var right: Vector3 = _ducky.transform.basis.x
-
-	var vel := (forward * -axis.z + right * -axis.x)
-	#var vel := (forward + right)
-
-#	if is_on_floor():
-#		_gravity = 0.0
-#	else:
-#		_gravity -= 5.0 * delta
-#
-	vel.y = 0.0
-	
 	var speed: float
 	var walk_anim_speed: float
 	var max_speed := 50.0
@@ -90,7 +75,22 @@ func _physics_process(delta):
 		speed = max_speed
 		walk_anim_speed = 5.0
 
+
+	var forward: Vector3 = _ducky.transform.basis.z
+	var right: Vector3 = _ducky.transform.basis.x
+
+	var vel := (forward * -axis.z + right * -axis.x)
 	vel = vel.normalized() * speed
+
+	if is_on_floor():
+		_gravity = 0.0
+	else:
+		_gravity -= 5.0 * delta
+#
+	vel.y = _gravity
+	
+
+	
 	move_and_slide(vel, Vector3.UP)
 	
 	

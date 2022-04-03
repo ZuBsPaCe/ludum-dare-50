@@ -54,6 +54,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.497795, -1.72888, 1.42932 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -70.8475, 0 )
 
 [node name="House" parent="Garden" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 46.0825, 7.31691, 0 )
 
 [node name="Prototype" type="Spatial" parent="."]
 
@@ -79,6 +80,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 149.459, -1.64639, 70.9751 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 149.459, -1.64639, 142.826 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22.0946 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
@@ -91,4 +93,4 @@ directional_shadow_normal_bias = 0.5
 directional_shadow_max_distance = 800.0
 
 [node name="Lady" parent="." instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 96.5973, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 96.5973, 0, 22.0946 )
