@@ -85,7 +85,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		_gravity = 0.0
 	else:
-		_gravity -= 5.0 * delta
+		_gravity -= 90.0 * delta
 #
 	vel.y = _gravity
 	
@@ -108,7 +108,8 @@ func _physics_process(delta):
 	
 	
 
-	var moving := vel != Vector3.ZERO
+	var moving := vel.x != 0 || vel.z != 0
+	var falling := vel.y != 0
 	
 	if moving:
 #		_ducky_animation_head.stop()
@@ -152,7 +153,7 @@ func _physics_process(delta):
 			_ducky_animation_head.play("WingsDown")
 	
 		
-	if !moving && !action1 && !action2:
+	if !moving && !action1 && !action2 && !falling:
 		
 		var wait_for_animations := false
 		if _reset_idle:
