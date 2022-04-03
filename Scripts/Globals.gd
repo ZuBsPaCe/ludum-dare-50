@@ -18,6 +18,12 @@ func _ready():
 	_center_node = Node2D.new()
 	add_child(_center_node)
 
+
+
+func reset_game():
+	pass
+
+
 func setup(
 	p_camera: Camera2D,
 	p_entity_container,

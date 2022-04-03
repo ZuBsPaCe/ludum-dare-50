@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Objects/House/Textures/Darkwood.tres" type="Material" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://Scripts/Tools/StateMachine.gd" type="Script" id=4]
 [ext_resource path="res://Objects/Garden/FlowerBedDirt.scn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Lady/Lady.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/Menu/MainMenu.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Garden/Ground.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Stream/Stream.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/Garden/FlowerBed.scn" type="PackedScene" id=10]
@@ -15,6 +15,17 @@
 [ext_resource path="res://Objects/Fauna/Tree Variation.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Objects/Garden/Ground.scn" type="PackedScene" id=14]
 [ext_resource path="res://Objects/Garden/Materials/GroundSplatmap.tres" type="Material" id=15]
+[ext_resource path="res://Objects/Menu/Textures/NoGlow/Exit.png" type="Texture" id=16]
+[ext_resource path="res://Objects/Menu/Textures/NoGlow/Music.png" type="Texture" id=17]
+[ext_resource path="res://Objects/Menu/Textures/NoGlow/Sound.png" type="Texture" id=18]
+[ext_resource path="res://Objects/Menu/Textures/NoGlow/New Game.png" type="Texture" id=19]
+[ext_resource path="res://Objects/Menu/Textures/Glow/Title.png" type="Texture" id=20]
+[ext_resource path="res://Objects/Menu/Textures/NoGlow/Continue.png" type="Texture" id=21]
+[ext_resource path="res://Scripts/Story.gd" type="Script" id=22]
+[ext_resource path="res://Objects/Menu/Textures/Glow/Story4.png" type="Texture" id=23]
+[ext_resource path="res://Objects/Menu/Textures/Glow/Story1.png" type="Texture" id=24]
+[ext_resource path="res://Objects/Menu/Textures/Glow/Story2.png" type="Texture" id=25]
+[ext_resource path="res://Objects/Menu/Textures/Glow/Story3.png" type="Texture" id=26]
 
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 543.793, 100, 10 )
@@ -55,11 +66,185 @@ glow_hdr_threshold = 0.9
 script = ExtResource( 1 )
 
 [node name="GameStateMachine" type="Node" parent="."]
+pause_mode = 2
 script = ExtResource( 4 )
 
-[node name="MainMenu" type="CanvasLayer" parent="."]
+[node name="MainMenu Camera" type="Camera" parent="."]
+transform = Transform( 0.999779, 0.00786749, -0.0195175, 0, 0.927482, 0.373868, 0.0210435, -0.373785, 0.927277, 114.533, 108.921, 391.737 )
+current = true
+far = 1500.0
 
-[node name="GameOverlay" type="CanvasLayer" parent="."]
+[node name="MainMenuOverlay" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 7 )
+
+[node name="MainMenu" type="MarginContainer" parent="MainMenuOverlay"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuOverlay/MainMenu"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 1870.0
+margin_bottom = 1030.0
+
+[node name="Title" type="TextureRect" parent="MainMenuOverlay/MainMenu/VBoxContainer"]
+margin_top = 521.0
+margin_right = 1820.0
+margin_bottom = 766.0
+size_flags_vertical = 10
+texture = ExtResource( 20 )
+stretch_mode = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuOverlay/MainMenu/VBoxContainer"]
+margin_top = 770.0
+margin_right = 1820.0
+margin_bottom = 980.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer"]
+margin_right = 502.0
+margin_bottom = 210.0
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_right = 502.0
+margin_bottom = 122.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ExitButton" type="TextureRect" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer2"]
+margin_top = 126.0
+margin_right = 502.0
+margin_bottom = 210.0
+size_flags_vertical = 9
+texture = ExtResource( 16 )
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer"]
+margin_left = 506.0
+margin_right = 1313.0
+margin_bottom = 210.0
+
+[node name="ContinueButton" type="TextureRect" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer3"]
+visible = false
+margin_right = 807.0
+margin_bottom = 150.0
+size_flags_horizontal = 3
+texture = ExtResource( 21 )
+stretch_mode = 4
+
+[node name="NewGameButton" type="TextureRect" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer3"]
+margin_right = 807.0
+margin_bottom = 210.0
+size_flags_horizontal = 3
+texture = ExtResource( 19 )
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer"]
+margin_left = 1317.0
+margin_right = 1820.0
+margin_bottom = 210.0
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 503.0
+margin_bottom = 29.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 33.0
+margin_right = 503.0
+margin_bottom = 129.0
+size_flags_horizontal = 3
+
+[node name="Music" type="TextureRect" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 270.0
+margin_bottom = 96.0
+texture = ExtResource( 17 )
+
+[node name="MusicSlider" type="HSlider" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 274.0
+margin_top = 40.0
+margin_right = 503.0
+margin_bottom = 56.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 133.0
+margin_right = 503.0
+margin_bottom = 210.0
+size_flags_horizontal = 3
+
+[node name="Sound" type="TextureRect" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 266.0
+margin_bottom = 77.0
+texture = ExtResource( 18 )
+
+[node name="SoundSlider" type="HSlider" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 270.0
+margin_top = 30.0
+margin_right = 503.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="StoryOverlay" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 22 )
+
+[node name="Story" type="MarginContainer" parent="StoryOverlay"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StoryOverlay/Story"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 1870.0
+margin_bottom = 1030.0
+
+[node name="Story1" type="TextureRect" parent="StoryOverlay/Story/VBoxContainer"]
+margin_right = 1820.0
+margin_bottom = 427.0
+texture = ExtResource( 24 )
+stretch_mode = 4
+
+[node name="Story2" type="TextureRect" parent="StoryOverlay/Story/VBoxContainer"]
+margin_top = 431.0
+margin_right = 1820.0
+margin_bottom = 566.0
+texture = ExtResource( 25 )
+stretch_mode = 4
+
+[node name="Story3" type="TextureRect" parent="StoryOverlay/Story/VBoxContainer"]
+margin_top = 570.0
+margin_right = 1820.0
+margin_bottom = 767.0
+texture = ExtResource( 26 )
+stretch_mode = 4
+
+[node name="Story4" type="TextureRect" parent="StoryOverlay/Story/VBoxContainer"]
+visible = false
+margin_top = 771.0
+margin_right = 1820.0
+margin_bottom = 957.0
+texture = ExtResource( 23 )
+stretch_mode = 4
+
+[node name="StartStoryButton" type="TextureRect" parent="StoryOverlay/Story/VBoxContainer"]
+margin_top = 771.0
+margin_right = 1820.0
+margin_bottom = 921.0
+texture = ExtResource( 21 )
+stretch_mode = 4
 
 [node name="EntityContainer" type="Node2D" parent="."]
 
@@ -229,9 +414,6 @@ material/0 = ExtResource( 11 )
 [node name="CollisionShape" type="CollisionShape" parent="Garden/FlowerBed6/FlowerBedDirt/StaticBody6"]
 shape = SubResource( 6 )
 
-[node name="Player" parent="." instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 22.0946 )
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
 
@@ -288,3 +470,16 @@ transform = Transform( 0.605113, 0, 0.796139, 0, 1, 0, -0.796139, 0, 0.605113, 3
 
 [node name="Bush Variation10" parent="Fauna" instance=ExtResource( 12 )]
 transform = Transform( 0.805626, -0.238326, -0.542372, -0.36175, -0.922912, -0.131794, -0.469151, 0.30238, -0.829737, 345.661, 4.73455, -302.421 )
+
+[connection signal="gui_input" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer2/ExitButton" to="MainMenuOverlay" method="_on_ExitButton_gui_input"]
+[connection signal="mouse_entered" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer2/ExitButton" to="MainMenuOverlay" method="_on_ExitButton_mouse_entered"]
+[connection signal="mouse_exited" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer2/ExitButton" to="MainMenuOverlay" method="_on_ExitButton_mouse_exited"]
+[connection signal="gui_input" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer3/ContinueButton" to="MainMenuOverlay" method="_on_ContinueButton_gui_input"]
+[connection signal="mouse_entered" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer3/ContinueButton" to="MainMenuOverlay" method="_on_ContinueButton_mouse_entered"]
+[connection signal="mouse_exited" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer3/ContinueButton" to="MainMenuOverlay" method="_on_ContinueButton_mouse_exited"]
+[connection signal="gui_input" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer3/NewGameButton" to="MainMenuOverlay" method="_on_NewGameButton_gui_input"]
+[connection signal="mouse_entered" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer3/NewGameButton" to="MainMenuOverlay" method="_on_NewGameButton_mouse_entered"]
+[connection signal="mouse_exited" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer3/NewGameButton" to="MainMenuOverlay" method="_on_NewGameButton_mouse_exited"]
+[connection signal="gui_input" from="StoryOverlay/Story/VBoxContainer/StartStoryButton" to="StoryOverlay" method="_on_StartStoryButton_gui_input"]
+[connection signal="mouse_entered" from="StoryOverlay/Story/VBoxContainer/StartStoryButton" to="StoryOverlay" method="_on_StartStoryButton_mouse_entered"]
+[connection signal="mouse_exited" from="StoryOverlay/Story/VBoxContainer/StartStoryButton" to="StoryOverlay" method="_on_StartStoryButton_mouse_exited"]
