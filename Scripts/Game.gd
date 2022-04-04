@@ -158,3 +158,12 @@ func _on_Lady_body_entered(body):
 			#Globals.snail_count = 0
 			$MainAnimationPlayer.play("Outro")
 
+
+
+func _on_MusicSlider_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear2db(value))
+
+
+
+func _on_SoundSlider_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sounds"), linear2db(value))

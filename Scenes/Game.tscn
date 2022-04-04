@@ -712,7 +712,6 @@ far = 1500.0
 
 [node name="MainMenuOverlay" type="CanvasLayer" parent="."]
 pause_mode = 2
-visible = false
 script = ExtResource( 7 )
 
 [node name="MainMenu" type="MarginContainer" parent="MainMenuOverlay"]
@@ -809,6 +808,9 @@ margin_right = 503.0
 margin_bottom = 56.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
+min_value = -80.0
+max_value = 0.0
+value = -5.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 133.0
@@ -828,6 +830,9 @@ margin_right = 503.0
 margin_bottom = 46.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
+min_value = -80.0
+max_value = 0.0
+value = -5.0
 
 [node name="StoryOverlay" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -1508,6 +1513,8 @@ shape = SubResource( 21 )
 [connection signal="gui_input" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer3/NewGameButton" to="MainMenuOverlay" method="_on_NewGameButton_gui_input"]
 [connection signal="mouse_entered" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer3/NewGameButton" to="MainMenuOverlay" method="_on_NewGameButton_mouse_entered"]
 [connection signal="mouse_exited" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer3/NewGameButton" to="MainMenuOverlay" method="_on_NewGameButton_mouse_exited"]
+[connection signal="value_changed" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer/MusicSlider" to="." method="_on_MusicSlider_value_changed"]
+[connection signal="value_changed" from="MainMenuOverlay/MainMenu/VBoxContainer/HBoxContainer/VBoxContainer/HBoxContainer2/SoundSlider" to="." method="_on_SoundSlider_value_changed"]
 [connection signal="gui_input" from="StoryOverlay/Story/VBoxContainer/StartStoryButton" to="StoryOverlay" method="_on_StartStoryButton_gui_input"]
 [connection signal="mouse_entered" from="StoryOverlay/Story/VBoxContainer/StartStoryButton" to="StoryOverlay" method="_on_StartStoryButton_mouse_entered"]
 [connection signal="mouse_exited" from="StoryOverlay/Story/VBoxContainer/StartStoryButton" to="StoryOverlay" method="_on_StartStoryButton_mouse_exited"]
