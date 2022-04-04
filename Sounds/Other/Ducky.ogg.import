@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Ducky.ogg-598115f5e374771f0cde86b75c770310.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Other/Ducky.ogg"
+dest_files=[ "res://.import/Ducky.ogg-598115f5e374771f0cde86b75c770310.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

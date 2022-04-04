@@ -21,6 +21,7 @@ func _process(delta):
 func update_target():
 	target.x = start.x + 40 * randf() - 20
 	target.z = start.z + 20 * randf() - 10
+	target.y = start.y
 		
 	
 

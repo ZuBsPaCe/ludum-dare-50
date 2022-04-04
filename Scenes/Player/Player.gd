@@ -60,6 +60,7 @@ func init_position_and_rotation(pos: Vector3, rotation_degrees: float):
 
 func reset_game():
 	$Ducky/Armature/Skeleton/DuckyBeakBottom/Medicine.visible = false
+	$Ducky/Armature/Skeleton/DuckyBeakBottom/Flower.visible = false
 
 
 func _process(delta):
@@ -156,6 +157,7 @@ func _physics_process(delta):
 			_reset_idle = true
 			_ducky_animation_head.play("BiteStart")
 			_ducky_animation_head.queue("BeakOpen")
+			owner.play_sound("AudioDucky")
 	else:
 		if Globals.action1_active:
 			Globals.action1_active = false
@@ -191,8 +193,13 @@ func _physics_process(delta):
 					$Ducky/Armature/Skeleton/DuckyBeakBottom/Medicine.visible = true
 					Globals.has_medicine = true
 				elif collider.is_in_group("Snail"):
-					collider.visible = false
+					collider.get_parent().visible = false
 					Globals.snail_count += 1
+				elif collider.is_in_group("Flower"):
+					$Ducky/Armature/Skeleton/DuckyBeakBottom/Flower.visible = true
+					collider.visible = false
+					Globals.flower_count += 1
+					owner.play_animation("Task3-End")
 
 
 	

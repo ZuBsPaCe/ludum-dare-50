@@ -14,6 +14,12 @@ var _audio_was_playing := false
 var _random_audio_index = 0
 
 
+func disable_animations():
+	$Lady/AnimationPlayer.stop()
+	
+
+
+
 
 func play_animation(anim: String):
 	_animation_player.get_animation(anim).loop = true
@@ -33,6 +39,10 @@ func begin_task(task):
 			_random_audios = [
 				load("res://Sounds/Lady/Task2-Hurry.ogg"),
 				load("res://Sounds/Lady/Task2-Poor flowers.ogg")
+			]
+		Task.FLOWERS:
+			_random_audios = [
+				load("res://Sounds/Lady/Task3-Flowers2.ogg")
 			]
 	
 	

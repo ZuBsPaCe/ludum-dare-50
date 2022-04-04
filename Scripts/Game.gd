@@ -24,6 +24,8 @@ func _ready():
 	$StoryOverlay.visible = false
 	$AimOverlay.visible = false
 	$Snails.visible = false
+	$Flowers.visible = false
+	$OutroOverlay.visible = false
 	
 	$"MainMenu Camera".current = true
 
@@ -57,7 +59,9 @@ func hide_aim():
 
 func play_sound(name):
 	get_node("Sounds/" + name).play()
-
+	
+func play_animation(anim):
+	$MainAnimationPlayer.play(anim)
 
 func _on_GameStateMachine_enter_state():
 	match _game_state.current:
@@ -66,11 +70,23 @@ func _on_GameStateMachine_enter_state():
 			$MainMenuOverlay.visible = true
 			$MainMenuOverlay.update_controls()
 			$Snails.visible = false
+			
+			$Sounds/AudioBling.stop()
+			$Sounds/AudioSoftMusic.stop()
+			$Sounds/AudioSpooky.stop()
+			$Sounds/AudioSpookyMusic.stop()
+			$Sounds/AudioWakeup.stop()
 
 		GameState.NEW_GAME:
 			Globals.reset_game()
 			$Player.reset_game()
 			switch_game_state(GameState.STORY)
+			
+			for snail in $Snails.get_children():
+				snail.visible = true
+			
+			for flower in $Flowers.get_children():
+				flower.visible = true
 			
 			$MainAnimationPlayer.stop()
 			$MainAnimationPlayer.play("Task1-Start")
@@ -84,8 +100,7 @@ func _on_GameStateMachine_enter_state():
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			get_tree().paused = false
 			$Snails.visible = true
-			for snail in $Snails.get_children():
-				snail.visible = true
+
 		
 		GameState.PAUSED:
 			get_tree().paused = true
@@ -134,8 +149,12 @@ func _on_Lady_body_entered(body):
 		if Globals.has_medicine:
 			Globals.has_medicine = false
 			$Player/Ducky/Armature/Skeleton/DuckyBeakBottom/Medicine.visible = false
+			$Player/Ducky/Armature/Skeleton/DuckyBeakBottom/Flower.visible = false
 			$MainAnimationPlayer.play("Task2-Start")
 		if Globals.snail_count >= 8:
 			Globals.snail_count = 0
 			$MainAnimationPlayer.play("Task3-Start")
+		if Globals.flower_count > 0:
+			#Globals.snail_count = 0
+			$MainAnimationPlayer.play("Outro")
 
