@@ -47,12 +47,14 @@ func _ready():
 
 func init_rotation(rotation_degrees: float):
 	_ducky.rotation_degrees.y = rotation_degrees
+	$CollisionShape.rotation_degrees.y = rotation_degrees
 	_ducky_rotation_degrees = rotation_degrees
 
 
 func init_position_and_rotation(pos: Vector3, rotation_degrees: float):
 	translation = pos
 	_ducky.rotation_degrees.y = rotation_degrees
+	$CollisionShape.rotation_degrees.y = rotation_degrees
 	_ducky_rotation_degrees = rotation_degrees
 
 
@@ -128,7 +130,7 @@ func _physics_process(delta):
 	
 	_ducky_rotation_degrees = rad2deg(lerp_angle(deg2rad(_ducky_rotation_degrees), deg2rad(desired_rotation), rot_speed * delta))
 	_ducky.rotation_degrees.y = _ducky_rotation_degrees
-	
+	$CollisionShape.rotation_degrees.y = _ducky_rotation_degrees
 	
 
 	var moving := vel.x != 0 || vel.z != 0
@@ -177,7 +179,7 @@ func _physics_process(delta):
 				from,
 				to, 
 				[],
-				0x7FFFFFFF,
+				1 << 4,
 				true,
 				false)
 
@@ -185,8 +187,12 @@ func _physics_process(delta):
 				var collider = res["collider"]
 				if collider.is_in_group("Medicine"):
 					collider.visible = false
+					var test = collider.collision_mask
 					$Ducky/Armature/Skeleton/DuckyBeakBottom/Medicine.visible = true
 					Globals.has_medicine = true
+				elif collider.is_in_group("Snail"):
+					collider.visible = false
+					Globals.snail_count += 1
 
 
 	

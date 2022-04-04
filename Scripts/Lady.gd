@@ -30,7 +30,10 @@ func begin_task(task):
 				load("res://Sounds/Lady/Task1-Where could it be.ogg")
 			]
 		Task.SNAILS:
-			pass
+			_random_audios = [
+				load("res://Sounds/Lady/Task2-Hurry.ogg"),
+				load("res://Sounds/Lady/Task2-Poor flowers.ogg")
+			]
 	
 	
 	if _random_audios.size() > 0:

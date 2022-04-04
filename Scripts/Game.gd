@@ -23,6 +23,7 @@ func _ready():
 	$MainMenuOverlay.visible = false
 	$StoryOverlay.visible = false
 	$AimOverlay.visible = false
+	$Snails.visible = false
 	
 	$"MainMenu Camera".current = true
 
@@ -64,6 +65,7 @@ func _on_GameStateMachine_enter_state():
 			get_tree().paused = true
 			$MainMenuOverlay.visible = true
 			$MainMenuOverlay.update_controls()
+			$Snails.visible = false
 
 		GameState.NEW_GAME:
 			Globals.reset_game()
@@ -81,6 +83,9 @@ func _on_GameStateMachine_enter_state():
 			$DoorMain.rotation.y = 0
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			get_tree().paused = false
+			$Snails.visible = true
+			for snail in $Snails.get_children():
+				snail.visible = true
 		
 		GameState.PAUSED:
 			get_tree().paused = true
@@ -130,4 +135,7 @@ func _on_Lady_body_entered(body):
 			Globals.has_medicine = false
 			$Player/Ducky/Armature/Skeleton/DuckyBeakBottom/Medicine.visible = false
 			$MainAnimationPlayer.play("Task2-Start")
+		if Globals.snail_count >= 8:
+			Globals.snail_count = 0
+			$MainAnimationPlayer.play("Task3-Start")
 

@@ -34,3 +34,5 @@ script = ExtResource( 3 )
 
 [node name="Camera" type="Camera" parent="SpringArm"]
 far = 1000.0
+
+[node name="Spatial" type="Spatial" parent="."]

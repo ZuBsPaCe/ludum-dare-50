@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Task2-Hurry.ogg-8c20858512c146c2c0112ea02a8ff34e.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Lady/Task2-Hurry.ogg"
+dest_files=[ "res://.import/Task2-Hurry.ogg-8c20858512c146c2c0112ea02a8ff34e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

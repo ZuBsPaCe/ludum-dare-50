@@ -14,6 +14,7 @@ var aim_offset := Vector2.ZERO
 var aim_shown := false
 
 var has_medicine := false
+var snail_count := 0
 
 
 func _ready():
@@ -24,6 +25,7 @@ func _ready():
 
 func reset_game():
 	has_medicine = false
+	snail_count = 0
 
 
 func setup():

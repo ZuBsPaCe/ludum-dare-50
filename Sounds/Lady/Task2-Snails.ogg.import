@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Task2-Snails.ogg-27b1eca34095464eeae75bd284c1baaf.oggstr"
+
+[deps]
+
+source_file="res://Sounds/Lady/Task2-Snails.ogg"
+dest_files=[ "res://.import/Task2-Snails.ogg-27b1eca34095464eeae75bd284c1baaf.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
