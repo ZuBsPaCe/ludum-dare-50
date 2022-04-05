@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Ceiling.png-0a03124c116ee8b67316cedc7b147643.s3tc.stex"
-path.etc="res://.import/Ceiling.png-0a03124c116ee8b67316cedc7b147643.etc.stex"
+path="res://.import/Ceiling.png-0a03124c116ee8b67316cedc7b147643.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Objects/House/Textures/Ceiling.png"
-dest_files=[ "res://.import/Ceiling.png-0a03124c116ee8b67316cedc7b147643.s3tc.stex", "res://.import/Ceiling.png-0a03124c116ee8b67316cedc7b147643.etc.stex" ]
+dest_files=[ "res://.import/Ceiling.png-0a03124c116ee8b67316cedc7b147643.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

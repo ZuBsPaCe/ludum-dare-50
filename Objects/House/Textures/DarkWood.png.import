@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/DarkWood.png-7a1c9ea2ed2390290e47bfd1720b8d2e.s3tc.stex"
-path.etc="res://.import/DarkWood.png-7a1c9ea2ed2390290e47bfd1720b8d2e.etc.stex"
+path="res://.import/DarkWood.png-7a1c9ea2ed2390290e47bfd1720b8d2e.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Objects/House/Textures/DarkWood.png"
-dest_files=[ "res://.import/DarkWood.png-7a1c9ea2ed2390290e47bfd1720b8d2e.s3tc.stex", "res://.import/DarkWood.png-7a1c9ea2ed2390290e47bfd1720b8d2e.etc.stex" ]
+dest_files=[ "res://.import/DarkWood.png-7a1c9ea2ed2390290e47bfd1720b8d2e.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

@@ -16,6 +16,7 @@ var _random_audio_index = 0
 
 func disable_animations():
 	$Lady/AnimationPlayer.stop()
+	_random_audios.clear()
 	
 
 
@@ -63,11 +64,14 @@ func _process(delta):
 		if _audio_talk.playing:
 			_audio_was_playing = true
 		elif _audio_was_playing:
-			_random_audio_cooldown.restart_with(randf() * 10 + 10)
-		else:
+			_audio_was_playing = false
+			_random_audio_cooldown.restart_with(randf() * 8 + 12)
+		elif _random_audio_cooldown.done:
+			_random_audio_index += 1
 			if _random_audio_index >= _random_audios.size():
 				_random_audio_index = 0
 			_audio_talk.stream = _random_audios[_random_audio_index]
 			_audio_talk.play()
+			_audio_was_playing = true
 			
 		

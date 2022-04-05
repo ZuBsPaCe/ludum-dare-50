@@ -1,9 +1,9 @@
 extends KinematicBody
 
-onready var _camera := $SpringArm/Camera
-onready var _spring_arm := $SpringArm
-onready var _ducky := $Ducky
-onready var _ducky_animation_walk := $Ducky/AnimationPlayer
+onready var _camera = $SpringArm/Camera
+onready var _spring_arm = $SpringArm
+onready var _ducky = $Ducky
+onready var _ducky_animation_walk = $Ducky/AnimationPlayer
 
 
 export var movement_enabled := true
@@ -88,8 +88,8 @@ func _physics_process(delta):
 	
 	#print("Ducky %s   Desired %s" % [_ducky.rotation.y, desired_rotation])
 	
-	var action1 := Input.is_action_pressed("left_click")
-	var action2 := Input.is_action_pressed("right_click")
+	var action1 = Input.is_action_pressed("left_click")
+	var action2 = Input.is_action_pressed("right_click")
 	
 	var speed: float
 	var walk_anim_speed: float
@@ -158,6 +158,9 @@ func _physics_process(delta):
 			_ducky_animation_head.play("BiteStart")
 			_ducky_animation_head.queue("BeakOpen")
 			owner.play_sound("AudioDucky")
+
+			if Globals.flower_count > 0 && Globals.player_near_lady:
+				owner.start_outro()
 	else:
 		if Globals.action1_active:
 			Globals.action1_active = false

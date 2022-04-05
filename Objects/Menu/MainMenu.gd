@@ -43,7 +43,7 @@ func _on_ExitButton_mouse_exited():
 
 func _on_ExitButton_gui_input(event):
 	if event is InputEventMouseButton && event.pressed:
-		get_tree().quit()
+		owner.exit()
 
 
 func _on_ContinueButton_mouse_entered():

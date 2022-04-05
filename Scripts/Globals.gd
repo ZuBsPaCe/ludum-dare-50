@@ -17,6 +17,8 @@ var has_medicine := false
 var snail_count := 0
 var flower_count := 0
 
+var player_near_lady := false
+
 
 func _ready():
 	_center_node = Node2D.new()
@@ -28,6 +30,7 @@ func reset_game():
 	has_medicine = false
 	snail_count = 0
 	flower_count = 0
+	player_near_lady = false
 
 
 func setup():

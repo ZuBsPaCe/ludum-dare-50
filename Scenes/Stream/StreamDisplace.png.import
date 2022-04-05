@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/StreamDisplace.png-4333e459fb5e508571cd0944435838e0.s3tc.stex"
-path.etc="res://.import/StreamDisplace.png-4333e459fb5e508571cd0944435838e0.etc.stex"
+path="res://.import/StreamDisplace.png-4333e459fb5e508571cd0944435838e0.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Scenes/Stream/StreamDisplace.png"
-dest_files=[ "res://.import/StreamDisplace.png-4333e459fb5e508571cd0944435838e0.s3tc.stex", "res://.import/StreamDisplace.png-4333e459fb5e508571cd0944435838e0.etc.stex" ]
+dest_files=[ "res://.import/StreamDisplace.png-4333e459fb5e508571cd0944435838e0.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

@@ -2,21 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Tiled Wet Gravel.png-4fb379adf695957066c2028772185875.s3tc.stex"
-path.etc="res://.import/Tiled Wet Gravel.png-4fb379adf695957066c2028772185875.etc.stex"
+path="res://.import/Tiled Wet Gravel.png-4fb379adf695957066c2028772185875.stex"
 metadata={
-"imported_formats": [ "s3tc", "etc" ],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://Objects/Garden/Textures/Tiled Wet Gravel.png"
-dest_files=[ "res://.import/Tiled Wet Gravel.png-4fb379adf695957066c2028772185875.s3tc.stex", "res://.import/Tiled Wet Gravel.png-4fb379adf695957066c2028772185875.etc.stex" ]
+dest_files=[ "res://.import/Tiled Wet Gravel.png-4fb379adf695957066c2028772185875.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
